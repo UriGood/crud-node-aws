@@ -16,6 +16,19 @@ router.post('/users',(req,res)=>{
     })
 });
 
+// create multiple user 
+router.post('/users-multiple',(req,res)=>{
+    const user = userSchema;
+    user
+    .insertMany(req.body)
+    .then((data)=>{
+        res.json({statusCode:201,data});
+    })
+    .catch((error)=>{
+        res.json({statusCode:500,message: error})
+    })
+});
+
 //get All Users
 router.get('/users',(req,res)=>{
     userSchema
